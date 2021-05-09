@@ -1,5 +1,3 @@
-
-
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,9 +12,9 @@ void yyerror(char *);
 "int" { return INT; }
 [a-z]+ {yylval.str = strdup(yytext); return IDENTIFIER; }
 [0-9]+ {yylval.num = atoi(yytext); return CONSTANT; }
-"\n"   {return *yytext;}
-";"    {return *yytext;}
-"="    {return *yytext;}
+[\n]   {return ('\n');}
+[;]    {return (';');}
+[=]    {return ('=');}
 
 [ \t] ; /* skip whitespace */
 . yyerror("invalid character");
